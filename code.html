@@ -1,84 +1,383 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insider Threat Simulation Program (ITSP)</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insider Threat Simulation Program | Cybersecurity Resilience & Insider Threat Testing</title>
+    <meta name="description" content="ITSP simulates insider threats to test and enhance your organization's cybersecurity resilience. Ideal for public institutions and critical infrastructure." />
+    <meta name="keywords" content="insider threat simulation, cybersecurity, resilience testing, phishing simulation, ITSP, internal attack simulation, cybersecurity awareness, GDPR compliant security" />
+    <meta name="author" content="Insider Threat Simulation Program" />
+    <meta property="og:title" content="Insider Threat Simulation Program – Cybersecurity Resilience Testing" />
+    <meta property="og:description" content="Test your organization's readiness against insider threats. ITSP simulates high-trust breaches with ethical, GDPR-compliant methodology." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Insider Threat Simulation Program",
+  "description": "Simulation tool to test internal cybersecurity resilience, tailored for public institutions, critical infrastructure and high-stakes organizations.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Insider Threat Simulation Program",
+    "url": "https://itsp.neocities.orgm"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Global"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": [
+      "Public institutions",
+      "Critical infrastructure",
+      "High-stakes organizations"
+    ]
+  },
+  "url": "https://itsp.neocities.org"
+}
+</script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f8;
-            color: #333;
+      :root {
+        --cyan: #00ffff;
+        --cyan-dark: #00b7b7;
+        --dark: #050505;
+        --dark-light: #1a1a1a;
+      }
+      body {
+        font-family: "Rajdhani", sans-serif;
+        background-color: var(--dark);
+        color: white;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      h1, h2, h3, .glow, .logo {
+        font-family: "Orbitron", sans-serif;
+      }
+      .glow {
+        text-shadow: 0 0 12px var(--cyan);
+        color: white;
+      }
+      .hero-pattern {
+        background-image: radial-gradient(var(--cyan) 0.5px, transparent 0.5px);
+        background-size: 30px 30px;
+      }
+      .card-blur {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 255, 255, 0.1);
+        border-radius: 1.5rem;
+      }
+      .btn {
+        transition: all 0.3s ease;
+        transform: perspective(1px) translateZ(0);
+      }
+      .btn:hover {
+        transform: perspective(1px) translateZ(0) scale(1.05);
+      }
+      .btn-primary {
+        background: linear-gradient(145deg, rgba(0,255,255,1) 0%, rgba(0,200,200,1) 100%);
+        box-shadow: 0 4px 15px 0 rgba(0, 255, 255, 0.3);
+      }
+      .btn-secondary {
+        background-color: white;
+        color: var(--dark);
+      }
+      #introAnimation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 255, 255, 0.1) 0%,
+          rgba(0, 255, 255, 0.3) 50%,
+          rgba(0, 255, 255, 0.1) 100%
+        );
+        animation: blindSlide 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        z-index: 50;
+        pointer-events: none;
+      }
+      @keyframes blindSlide {
+        0% {
+          transform: translateX(-100%);
+          opacity: 1;
         }
-        header {
-            background-color: #002147;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        80% {
+          transform: translateX(0);
+          opacity: 1;
         }
-        section {
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: auto;
+        100% {
+          transform: translateX(100%);
+          opacity: 0;
         }
-        h1, h2 {
-            color: #002147;
+      }
+      .floating-element {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
         }
-        .cta {
-            background-color: #0066cc;
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 20px;
+        50% {
+          transform: translateY(-10px);
         }
-        footer {
-            background-color: #002147;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 40px;
+        100% {
+          transform: translateY(0px);
         }
+      }
+      .grid-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .grid-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      .sector-icon {
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+      }
+      @media (max-width: 768px) {
+        .hero-pattern {
+          background-size: 20px 20px;
+        }
+      }
+      @keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+#terminalIntro {
+  background-color: black;
+}
+#terminalText::after {
+  content: '_';
+  animation: blink 1s step-end infinite;
+}
+body {
+  cursor: crosshair;
+}
+a:hover {
+  cursor: pointer;
+}
+.hero-pattern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,255,255,0.05) 50%, transparent 100%);
+  animation: scan 4s infinite linear;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
     </style>
-</head>
-<body>
-
-<header>
-    <h1>Insider Threat Simulation Program (ITSP)</h1>
-    <p>Anticiper l'ingérence interne. Protéger la souveraineté européenne.</p>
-</header>
-
-<section>
-    <h2>Le concept</h2>
-    <p>L'ITSP est un programme de simulation avancée conçu pour tester la vigilance des agents face aux menaces d'ingérence interne. Basé sur des scénarios réalistes et hébergé sur l'infrastructure officielle du Parlement, l'objectif est d'identifier les vulnérabilités comportementales et organisationnelles.</p>
-
-    <h2>Objectifs stratégiques</h2>
-    <ul>
-        <li>Tester la réaction des agents à une tentative interne de collecte d'informations sensibles</li>
-        <li>Mesurer la résilience comportementale par Direction Générale</li>
-        <li>Générer des indicateurs pour orienter les futures actions de sensibilisation</li>
-    </ul>
-
-    <h2>Déroulement du programme</h2>
-    <ol>
-        <li>Conception du scénario personnalisé</li>
-        <li>Envoi d'un e-mail institutionnel officiel</li>
-        <li>Collecte anonymisée de données statistiques clés</li>
-        <li>Analyse et recommandations opérationnelles</li>
-    </ol>
-
-    <h2>Respect de la confidentialité</h2>
-    <p>Le programme ITSP respecte strictement le RGPD. Aucune donnée nominative ou sensible n'est stockée. Seules des statistiques anonymisées (DG, nationalité, ancienneté, âge, sexe) sont exploitées.</p>
-
-    <a href="#" class="cta">En savoir plus</a>
-</section>
-
-<footer>
-    <p>&copy; 2025 - Conception du programme ITSP : [Ton Nom]</p>
-</footer>
-
-</body>
+    <script>
+      window.addEventListener("load", () => {
+        const intro = document.getElementById("introAnimation");
+        intro.addEventListener("animationend", () => {
+          intro.style.display = "none";
+        });
+      });
+    </script>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const text = "Insider Threat Simulation Program";
+    const terminal = document.getElementById("terminalText");
+    let i = 0;
+    function typeNextChar() {
+      if (i <= text.length) {
+        terminal.textContent = text.substring(0, i);
+        i++;
+        setTimeout(typeNextChar, 80);
+      } else {
+        // Remove terminal intro after short delay
+        setTimeout(() => {
+          document.getElementById("terminalIntro").style.display = "none";
+        }, 1000);
+      }
+    }
+    typeNextChar();
+  });
+</script>
+  </head>
+  <body class="hero-pattern">
+  <div id="terminalIntro" class="fixed top-0 left-0 w-full h-full bg-black text-green-400 text-xl md:text-3xl flex items-center justify-center z-[100] font-mono">
+  <div id="terminalText" class="whitespace-pre"></div>
+</div>
+    <div id="introAnimation"></div>
+    <!-- Header -->
+    <header class="flex justify-between items-center px-6 py-4 border-b border-white/10">
+      <div class="logo text-3xl glow">ITSP</div>
+      <nav class="space-x-8 text-sm text-white/80">
+        <a href="#presentation" class="hover:text-cyan-400 transition">Overview</a>
+        <a href="#vision" class="hover:text-cyan-400 transition">Mission</a>
+        <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+      </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center text-center px-6 py-20">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-bold glow mb-6 leading-tight">
+          What if the threat wasn't outside<br class="hidden md:block">—but already inside your team?
+        </h1>
+        <p class="text-white/70 text-lg md:text-xl mb-10">
+          The Insider Threat Simulation Program is not a tool. It's a live-fire drill for the digital era.
+          Designed to wake up leadership before real damage hits.
+        </p>
+        <div class="mt-10">
+          <a
+            href="https://calendly.com/antoineviala71"
+            class="btn btn-primary text-black py-4 px-8 rounded-full text-lg font-bold shadow-lg inline-block"
+          >Request Private Demo</a>
+        </div>
+      </div>
+    </section>
+    <!-- Presentation Section -->
+    <section id="presentation" class="py-24 px-6 bg-dark-light/50">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-4xl glow mb-6">Simulate the Invisible. Reveal the Critical.</h2>
+        <div class="text-white/70 text-lg max-w-3xl mx-auto">
+          <p class="mb-4">
+            ITSP simulates what you fear most: a credible insider using your own systems, your own brand tone,
+            and your own timing to breach your internal trust layer.
+          </p>
+          <p>
+            This isn't cybersecurity theater. This is behavioral warfare.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Vision Section -->
+    <section id="vision" class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl glow mb-6">Our Approach</h2>
+          <p class="text-white/60 max-w-3xl mx-auto">
+            We don't simulate attacks. We simulate betrayal. The quiet, methodical kind that happens in broad daylight.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="p-8 rounded-3xl card-blur shadow-xl grid-item">
+            <div class="sector-icon glow mb-4">🔍</div>
+            <h3 class="text-2xl mb-4 text-cyan-400">Authentic Attack Surface</h3>
+            <p class="text-white/70">
+              Uses real subdomains, internal timing, and institution-grade messaging to simulate advanced internal deception tactics—without the risk of real damage.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div class="p-8 rounded-3xl card-blur shadow-xl grid-item">
+            <div class="sector-icon glow mb-4">🕒</div>
+            <h3 class="text-2xl mb-4 text-cyan-400">The Threat is Routine</h3>
+            <p class="text-white/70">
+              Security fatigue. Trust habits. Institutional inertia.
+              That's where we operate.
+              ITSP doesn't simulate chaos—it simulates <em>normal</em>, just slightly off, until something breaks.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div class="p-8 rounded-3xl card-blur shadow-xl grid-item">
+            <div class="sector-icon glow mb-4">📊</div>
+            <h3 class="text-2xl mb-4 text-cyan-400">Actionable Executive Insights</h3>
+            <p class="text-white/70">
+              This isn't compliance. This is survival strategy. We don't build dashboards for PowerPoint—we build red flags for real-time decision-makers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Clients Section -->
+    <section class="py-24 px-6 bg-dark-light/50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl glow mb-6">Built for Those Who Can't Afford to Be Wrong</h2>
+          <p class="text-white/60 max-w-3xl mx-auto mb-12">
+            ITSP is built by leaders across sectors where internal trust breaches could mean regulatory, financial, or reputational disaster.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-white/80">
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">🏛️</span>
+            <span>Governments</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">⚕️</span>
+            <span>Healthcare</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">🏦</span>
+            <span>Finance</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">⚖️</span>
+            <span>Legal</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">💻</span>
+            <span>Technology</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">🧪</span>
+            <span>Pharma</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">🎓</span>
+            <span>Education</span>
+          </div>
+          <div class="sector-item flex items-center p-4 card-blur rounded-xl">
+            <span class="sector-icon">🛫</span>
+            <span>Aerospace</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 px-6 bg-dark-light/80">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl glow mb-8">Let's Protect What Can't Be Replaced</h2>
+        <p class="text-white/70 mb-10">
+          Schedule a confidential briefing to explore how ITSP can be tailored to your ecosystem.
+          All inquiries are handled under strict professional confidentiality.
+        </p>
+        <div class="space-y-4 md:space-y-0 md:space-x-4">
+          <a
+            href="mailto:vialacorposolutions@icloud.com"
+            class="btn btn-secondary py-4 px-8 rounded-full text-lg font-bold shadow-lg inline-block"
+          >vialacorposolutions@icloud.com</a>
+          <a
+            href="https://calendly.com/antoineviala71"
+            class="btn btn-primary py-4 px-8 rounded-full text-lg font-bold shadow-lg inline-block"
+          >Book a Demo</a>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="text-center text-white/40 text-sm py-8 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="mb-4">
+          <div class="logo text-2xl glow mb-2">ITSP</div>
+          <p class="text-white/50 text-xs">
+            Insider Threat Simulation Program
+          </p>
+        </div>
+        <p class="mb-4">
+          &copy; 2025 Insider Threat Simulation Program. All rights reserved.
+        </p>
+        <p class="text-xs mb-4">
+          Proprietary concept. Unauthorized use, imitation, or dilution of this methodology is strictly forbidden.
+        </p>
+        <p class="text-xs italic text-white/30">
+          "We didn't ask for permission to build this. Don't ask for permission to protect what matters."
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
